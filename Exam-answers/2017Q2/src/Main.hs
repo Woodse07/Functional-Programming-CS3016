@@ -11,3 +11,5 @@ f3 = hof 0 (+)
 f4 = hof [] (++)
 f5 = hof 0 f5x
 	where x `f5x` y = (x-42) + y
+
+-- c
