@@ -1,0 +1,310 @@
+QUESTION 1.
+Evaluate:
+6 + 12 `div` 5 - 4
+
+Answer: 4
+Why?
+1. 6 + (12 `div` 5) - 4
+2. 6 + (2) - 4
+3. 4
+
+
+
+QUESTION 2.
+Which of the following is the type of the following expression?
+chr (head $ tail $ map (+1) $ filter even [1..10])
+a. [Int] 
+b. Int 
+c. [Char] 
+d. Num a => [a] 
+e. Char 
+
+
+Answer: Char
+Why?
+..At the bottom of the exam you can see the reference, it says chr takes in an Int and 
+returns a Char.
+
+
+
+
+QUESTION 3.
+Which of the following is the same as: a + b/c - d * f e g + h j?
+a. (a + b)/(c - d) * ((f e) g) + (h j) 
+b. (a + b)/((c - d) * f) (e g) + (h j) 
+c. a + (b/c) - (d * (f (e g)) + (h j)) 
+d. a + (b/c) - (d * ((f e) g)) + (h j) 
+e. a + (b/c) - (d * (f e (g + h) j))
+
+
+Answer: (d) a + (b/c) - (d * ((f e) g)) + (h j)
+Why?
+specificly at f e g..
+A function multThree 3 5 9 could be rewritten as (((multThree 3) 5) 9)..
+What happens here is first 3 is applied to multThree, this creates a function 
+that takes 1 paramters and returns a function. So 5 is applies to this function, etc.
+
+
+
+
+QUESTION 4.
+Which of the following has a type error:
+a. head [1,2,3] + 4 
+b. tail [1,2,3] ++ [4] 
+c. init [1,2,3] + 4 
+d. last [1,2,3] + 4 
+e. all of the above
+
+Answer: (c) init [1,2,3] + 4
+Why?
+I think whats happening here is (init [1,2,3]) + 4, since init returns a list, we can't 
+just add 4 to it.
+For example with (head [1,2,3]) + 4, we should get 5, since head returns the head (1) and we
+add 4 to that to get 5.
+For (tail [1,2,3]) ++ [4] we should get [2,3,4], since tail returns the tail of the list, then
+we concatenate 4 to that list.
+
+
+
+
+QUESTION 5.
+Which of the following do not have a type error:
+a. head [1,2,3] ++ [4] 
+b. tail [1,2,3] ++ 4 
+c. init [1,2,3] + 4 
+d. last [1,2,3] ++ 4 
+e. none of the above
+
+Answer: (e) none of the above.
+Why?
+Same as above.. lets take an example.
+Probably best to explain the functions that are being applied.
+(++) Takes in two lists and returns a list.
+(++) :: [a] -> [a] -> [a]
+This automatically rules out (a), (b) and (d), since in (a) head does not return a list,
+and in (b) and (d) '4' is not a list.
+(+) takes in two numbers, and returns a number.
+(+) :: (Num a) => a -> a -> a
+This rules out (c) since the tail function returns a list and not a number.
+
+
+
+
+QUESTION 6.
+Which of the following has the type [String](list of type String)?
+a. [tail $ head ["Hello"]] 
+b. tail $ head [[],"Hello"] 
+c. head $ tail "Hello" 
+d. head $ tail ["Hello"] 
+e. tail [head $ tail "Hello"] 
+
+
+Answer: (a) [tail $ head ["Hello"]] 
+Why?
+First, what does '$' mean?
+'$' is infix 'application', basically just used to avoid extra parentheses..
+Example: f (g x) == f $ g x
+Result of (a) should be ["ello"], because the head of ["Hello"] is "Hello", and the tail of
+that is "ello". This is all surrounded in square brackets so you should get ["ello"], which 
+is of type string.
+Why not any of the others?
+(b) will try to get tail of an empty list.
+(c) will get 'e'. (Is a char, not even a string, nevermind list)
+(d) will get "ello" (not a list).
+(e) will try to get the tail of a char, when it expects a list.
+
+
+
+
+QUESTION 7.
+Which of the following clauses of the pattern matches succeeds for **leap 2016**
+leap y
+	| y 'mod' 400 == 0 = True			-- Clause 1
+	| y 'mod' 100 == 0 = False			-- Clause 2
+	| y 'mod' 4   == 0 = True			-- Clause 3
+	| otherwise        = False			-- Clause 4
+
+Answer: Clause 3
+Why?
+Pretty self explanatory.. 2016 mod 400 is not 0, 2016 mod 100 is not 0, 2016 mod 4 is 0,
+Clause 3 succeeds.
+
+
+
+
+QUESTION 8.
+Which of the following claues of the pattern matches for sw 42 [9]?
+sw _ [] = False				-- Clause 1
+sw c (x:xs)
+	| c < x     = False		-- Clause 2
+	| c == x    = True		-- Clause 3
+	| otherwise = False		-- Clause 4
+	| c > x     = False		-- Clause 5
+
+Answer: Clause 4
+Why?
+Don't need to explain why Clause 1, 2, and 3 fail.. it would pass Clause 5 if it could reach
+it, but otherwise will succeed no matter what. 
+
+
+
+
+QUESTION 9.
+Which of the following result in a run time error?
+a. head (tail [1..1000000]) 
+b. tail (head [[],[1]]) 
+c. last (init [1..1000]) 
+d. init (last [[],[1]]) 
+e. tail (head [[1],[]]) 
+
+Answer: (b) tail (head [[],[1]]) 
+Why?
+The head of [[],[1]] is [], you'll get a runtime error if you try to get the tail of an 
+empty list.
+
+
+
+
+QUESTION 10.
+What is the full Haskell type of the lkp function below?
+lkp _ [] = Nothing
+lkp x ((y,z):ys)
+	| x == y = Just z
+	| otherwise = lkp x ys
+
+a. Eq a => a -> [(a, a)] -> Maybe a 
+b. Ord a => a -> [(a, b)] -> Maybe b 
+c. (Eq a, Ord a) => a -> [(a, b)] -> Maybe b 
+d. Eq a => a -> [(a, b)] -> Maybe b 
+e. a -> [(a, b)] -> Maybe b 
+
+Answer: (d) Eq a => a -> [(a, b)] -> Maybe b 
+Why?
+First, what does Eq a mean?
+Eq a means any a's in the function parameters should be members of the class Eq, which can
+be evaluated as equal or unequal.
+I'm not entirely sure, but I guess we need 'a' to be of the class Eq, so we can compe if 
+they are equal or not. The reason we have 'a' and 'b' and not just 'a', is because these
+are key value pairs, we wan't to compare the keys, we don't want to limit the types of the 
+value.
+
+
+
+
+QUESTION 11.
+In order to make Exp a proper instance of Num, what needs to be added to the data type?
+data Exp = 	Nmb Int			-- number
+		|	Var String 		-- variable
+		|	Add Exp Exp		-- add two Exp
+		|	Sub Exp Exp		-- subtract second Exp from frist
+		|	Sgn Exp			-- signum of Exp
+
+a. Mul Exp Exp | Dvd Exp Exp 
+b. Neg Exp | Mul Exp Exp | Abs Exp 
+c. Abs Exp | Neg Exp 
+d. Neg Exp | Dvd Exp Exp | Def String Exp Exp 
+e. none of the above 
+
+Answer: (b) Neg Exp | Mul Exp Exp | Abs Exp 
+**NOTE: Only one of Sub or Neg are needed, but (b) is still the best answer.**
+Why?
+In order to be an instance of Num, we need the following properties; (+), (-), (*), negate,
+abs, signum, fromInteger
+(I believe Nmb Int should act as fromInteger?)
+According to this, we are only missing (*), negate and abs. (b) contains all of these, so
+this is our answer.
+
+
+
+
+QUESTION 12.
+What is the full Haskell type for the mlkp function below?
+mlkp _ [] =  Nothing
+mlkp x ((y,z):ys)
+	| x == y 	= Just z
+	| otherwise = mlkp x ys
+
+a. (Monad m, Eq t) => t -> [(s,t)] -> m t 
+b. (Monad t, Eq s) => t -> [(s,t)] -> m t 
+c. (Monad m, Eq s) => s -> [(s,t)] -> m t 
+d. Monad m => t -> [(s,t)] -> m t 
+e. (Monad t, Ord s) => t -> [(s,t)] -> m t 
+
+Answer: (c) (Monad m, Eq s) => s -> [(s,t)] -> m t 
+Why?
+Pretty much same explanation as question 10 here.
+**Typo here: Nothing should have been 'fail "not found"' and just x should have been 
+return x. The monad here makes a lot more sense now.**
+
+
+
+
+QUESTION 13.
+Which reduction step in the sequence below is not in lazy reduction order?
+take 3 (from 42)
+=1= take 3 (42:from (42+1)) 
+=2= 42 : take (3-1) (from (42+1)) 
+=3= 42 : take 2 (from (42+1)) 
+=4= 42 : take 2 (from 43) 
+=5= 42 : take 2 (43:from (43+1)) 
+=6= 42 : 43 : take (2-1) (from (43+1)) 
+=7= 42 : 43 : take 1 (from (43+1)) 
+=8= 42 : 43 : take 1 ((43 + 1) : from (43+1))
+
+a. =1= 
+b. =3= 
+c. =4= 
+d. =7= 
+e. =8=
+
+
+Answer: (c) =4= 42 : take 2 (from 43)
+If you look at the pattern it doesn't fit in.. Can't really explain how..
+Instead of going from =3= to =4=, it shouldve gone straight to =5=.
+
+
+
+
+QUESTION 14.
+Under which forms of evaluation will the following expression produce a concrete list?
+take 4 threes where threes = 3:threes
+
+a. strict only 
+b. lazy only 
+c. neither lazy nor strict 
+d. both lazy and strict 
+e. none of the above 
+
+Answer: (b) lazy only
+Why?
+If strict, defining threes will result in an infinite loop.
+If lazy, the definition of three will execute only when you try to take from threes,
+and so when you're done taking you'll have a concrete list.
+*not sure if this is correct..*
+
+
+
+
+QUESTION 15.
+Under which forms of evaluation will the following expression return some form of value,
+and what will that value look like?
+drop 4 threes where threes = 3:threes
+
+a. lazy, result is threes 
+b. lazy only, result is [3,3,3,..,3] 
+c. neither lazy nor strict, result is undefined 
+d. strict only, result is [3,3,3,..,3] 
+e. both lazy and strict, result is threes 
+
+Answer: (a)
+Why?
+I think whats happening here, is every time drop is called, a '3' is added to threes.
+Something like this is happening..
+drop 4 threes where threes = 3:threes		threes = 3:threes, after execution is threes
+drop 3 threes where threes = 3:threes		threes = 3:threes, after execution is threes
+drop 2 threes where threes = 3:threes		threes = 3:threes, after execution is threes
+drop 1 threes where threes = 3:threes		threes = 3:threes, after execution is threes
+We end with threes.
+*Also not sure if this is correct..*
+
+
