@@ -29,12 +29,12 @@ version :: Version
 version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
-bindir     = "/home/woodse07/code/Funtional_programming/Exam-answers/2018Q1/.stack-work/install/x86_64-linux/lts-12.21/8.4.4/bin"
-libdir     = "/home/woodse07/code/Funtional_programming/Exam-answers/2018Q1/.stack-work/install/x86_64-linux/lts-12.21/8.4.4/lib/x86_64-linux-ghc-8.4.4/2018Q1-0.1.0.0-HJdZhtrUVazHnP5jYtewVT-2018Q1"
-dynlibdir  = "/home/woodse07/code/Funtional_programming/Exam-answers/2018Q1/.stack-work/install/x86_64-linux/lts-12.21/8.4.4/lib/x86_64-linux-ghc-8.4.4"
-datadir    = "/home/woodse07/code/Funtional_programming/Exam-answers/2018Q1/.stack-work/install/x86_64-linux/lts-12.21/8.4.4/share/x86_64-linux-ghc-8.4.4/2018Q1-0.1.0.0"
-libexecdir = "/home/woodse07/code/Funtional_programming/Exam-answers/2018Q1/.stack-work/install/x86_64-linux/lts-12.21/8.4.4/libexec/x86_64-linux-ghc-8.4.4/2018Q1-0.1.0.0"
-sysconfdir = "/home/woodse07/code/Funtional_programming/Exam-answers/2018Q1/.stack-work/install/x86_64-linux/lts-12.21/8.4.4/etc"
+bindir     = "/home/woodse07/code/Funtional_programming/Exam-answers/2018/2018Q1/.stack-work/install/x86_64-linux/lts-12.21/8.4.4/bin"
+libdir     = "/home/woodse07/code/Funtional_programming/Exam-answers/2018/2018Q1/.stack-work/install/x86_64-linux/lts-12.21/8.4.4/lib/x86_64-linux-ghc-8.4.4/2018Q1-0.1.0.0-HJdZhtrUVazHnP5jYtewVT-2018Q1"
+dynlibdir  = "/home/woodse07/code/Funtional_programming/Exam-answers/2018/2018Q1/.stack-work/install/x86_64-linux/lts-12.21/8.4.4/lib/x86_64-linux-ghc-8.4.4"
+datadir    = "/home/woodse07/code/Funtional_programming/Exam-answers/2018/2018Q1/.stack-work/install/x86_64-linux/lts-12.21/8.4.4/share/x86_64-linux-ghc-8.4.4/2018Q1-0.1.0.0"
+libexecdir = "/home/woodse07/code/Funtional_programming/Exam-answers/2018/2018Q1/.stack-work/install/x86_64-linux/lts-12.21/8.4.4/libexec/x86_64-linux-ghc-8.4.4/2018Q1-0.1.0.0"
+sysconfdir = "/home/woodse07/code/Funtional_programming/Exam-answers/2018/2018Q1/.stack-work/install/x86_64-linux/lts-12.21/8.4.4/etc"
 
 getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: IO FilePath
 getBinDir = catchIO (getEnv "2018Q1_bindir") (\_ -> return bindir)
